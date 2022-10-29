@@ -1,0 +1,41 @@
+{% include "header.html" %}
+
+<div class="jumbotron" style="text-align: center;">
+  <h1 class="display-4">Powered by Flask.</h1>
+  <p class="lead">This is a simple todo list created with the Bootstrap Library.</p>
+  <hr class="my-4">
+  <p>Click below to start your todo list.</p>
+  <p>
+    <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Start
+    </a>
+  </p>
+  {% if not check %}
+  <div class="collapse" id="collapseExample">
+  {% endif %}
+    <div class="card card-body">
+      <div class="container">
+        <form  method="POST" role="form" class="form-horizontal">
+          <div class="input-group input-group-lg">
+            <input type="text" placeholder="Your entry here" class="form-control" aria-label="to-do input" name="todo">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+        <br>
+        <div class="container">
+          <ul class="list-group list-group-flush">
+            {% for post in todo %}
+            <li class="list-group-item">{{ post.list_item }} <a href="{{url_for('delete', todo_id=post.id) }}"><button type="button" class="btn btn-outline-success btn-sm">✓</button></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% include "footer.html" %}
